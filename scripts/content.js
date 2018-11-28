@@ -14,7 +14,7 @@ tippy.setDefaults({
 
 class App {
   constructor() {
-    this.currentSelection = null;
+    this.currentTooltip = null;
   }
 
   onUserSelect() {
@@ -22,16 +22,16 @@ class App {
     // stops selecting
     document.onselectionchange = () => {
       document.onmouseup = () => {
-        // if we have a current selection, abort
-        if (this.currentSelection) return;
+        // if we have a current tooltip, abort
+        if (this.currentTooltip) return;
 
         // Get user selection
-        this.currentSelection = this.getSelectionDetails();
+        this.currentTooltip = this.getSelectionDetails();
 
-        // if no currentSelection, abort
-        if (!this.currentSelection) return;
-        // show tooltip with selection text
-        this.showTooltip();
+        // if no currentTooltip, abort
+        if (!this.currentTooltip) return;
+        // show lookup tooltip with selection text
+        this.showLookupTooltip();
       };
     };
   }
@@ -43,19 +43,47 @@ class App {
     // also triggers the mouseup event where we
     // show the tooltip
     document.onmousedown = event => {
-      // we check if there is a current selection
-      if (this.currentSelection && !this.isTooltip(event.target)) {
-        this.currentSelection._tippy.hide();
-        this.currentSelection = null;
+      // we check if there is a current tooltip
+      if (this.currentTooltip && !this.isTooltip(event.target)) {
+        this.currentTooltip._tippy.hide();
       }
     };
   }
 
-  showTooltip() {
-    const content = this.createLookupButton(this.currentSelection.text);
+  showLookupTooltip() {
+    const content = this.createLookupButton(this.currentTooltip.text);
 
-    tippy(this.currentSelection, {
-      content
+    tippy(this.currentTooltip, {
+      content,
+      // we destroy the tippy after it fully transitions out
+      onHidden(tip) {
+        tip.destroy();
+      },
+      // we remove reference to the tippy at the start of transitioning
+      onHide: () => {
+        this.currentTooltip = null;
+      }
+    });
+  }
+
+  showDefinitionTooltip(reference) {
+    tippy(reference, {
+      content: "Loading",
+      onMount: () => {
+        this.currentTooltip._tippy.hide();
+        // setting the defintion tooltip as the current tooltip
+        this.currentTooltip = reference;
+      },
+      async onShow(tip) {
+        // fetch data and set it to content
+        tip.setContent(`Show definiton of: ${tip.reference.text}`);
+      },
+      onHidden(tip) {
+        tip.destroy();
+      },
+      onHide: () => {
+        this.currentTooltip = null;
+      }
     });
   }
 
@@ -63,7 +91,7 @@ class App {
    * check if given node is tooltip itself or its child
    */
   isTooltip(node) {
-    return this.currentSelection._tippy.popper.contains(node);
+    return this.currentTooltip._tippy.popper.contains(node);
   }
 
   getSelectionDetails() {
@@ -104,12 +132,20 @@ class App {
     lookupButton.textContent = "lookup?";
     lookupButton.addEventListener(
       "click",
-      event => {
-        // Do something on lookup button click
-      },
+      this.handleLookupClick.bind(this, this.currentTooltip),
       false
     );
     return lookupButton;
+  }
+
+  handleLookupClick(reference) {
+    const virtualReference = {
+      getBoundingClientRect: reference.getBoundingClientRect,
+      clientHeight: reference.clientHeight,
+      clientWidth: reference.clientWidth,
+      text: reference.text
+    };
+    this.showDefinitionTooltip(virtualReference);
   }
 
   init() {
