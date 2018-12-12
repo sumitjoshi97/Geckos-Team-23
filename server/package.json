@@ -1,0 +1,24 @@
+{
+  "name": "tooltip-dictionary-server",
+  "version": "1.0.0",
+  "description": "server for tooltip-dictionary extension",
+  "main": "index.js",
+  "license": "ISC",
+  "private": false,
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.8"
+  },
+  "contributors": [
+    "sumitjoshi97",
+    "SalahHamza"
+  ]
+}
