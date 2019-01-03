@@ -7,14 +7,14 @@
 
   "browser_action": {
     "default_title": "Words",
-    "default_popup": "popup.html"
+    "default_popup": "views/popup.html"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "all_frames": true,
-      "css": ["styles/styles.css"],
-      "js": ["scripts/tippy.js", "scripts/content.js"]
+      "css": ["styles/tooltipTheme.css"],
+      "js": ["lib/tippy.js", "scripts/content.js"]
     }
   ],
   "permissions": [
