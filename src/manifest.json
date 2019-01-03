@@ -9,6 +9,9 @@
     "default_title": "Words",
     "default_popup": "views/popup.html"
   },
+  "chrome_url_overrides" : {
+    "newtab": "views/newTab.html"
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
