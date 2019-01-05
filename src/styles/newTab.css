@@ -1,0 +1,146 @@
+:root {
+  --primary-dark: #24353a;
+  --primary-light: #fdf3ff;
+  --shadow-dark: 0 0 1.5rem rgba(0, 0, 0, 0.2);
+  --theme-red: #ee5253;
+  --theme-green: #78e08f;
+  --theme-teal: #00cec9;
+  --theme-blue: #2a94ff;
+  --theme-violet: #8e44ad;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+.dashboard {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--theme-blue);
+}
+
+#dashboard-header {
+  font-size: 2rem;
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  color: var(--primary-light);
+  background: rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#dashboard-header > * {
+  margin: 0 1rem;
+}
+
+#dashboard-search {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 0.6rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+}
+
+.settings-btn {
+  font-weight: 700;
+  color: #fff;
+  background: transparent;
+  border: none;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.settings-btn:focus,
+.settings-btn:active {
+  outline: none;
+}
+
+#dashboard-content {
+  height: calc(100vh - 7rem);
+  top: 6rem;
+  width: 100%;
+  position: fixed;
+  overflow-y: auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* word-defintion card  */
+.card {
+  position: relative;
+  background: var(--primary-light);
+  width: 20rem;
+  height: 25rem;
+  margin: 2rem;
+  padding: 1.4rem;
+  border-radius: 0.2rem;
+  box-shadow: var(--shadow-dark);
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0rem 1rem 1.4rem rgba(0, 0, 0, 0.1);
+}
+
+.card > .word-head {
+  color: #2c2c2c;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.02rem solid #9c9c9c;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.card > .word-def {
+  color: #505050;
+  font-size: 1.5rem;
+  display: flex;
+}
+
+.card > .word-def > span {
+  display: inline-block;
+  padding-right: 1rem;
+}
+
+/* /////////////////////////////////////// */
+/* custom scrollbar css */
+::-webkit-scrollbar {
+  width: 0.65rem;
+  background: transparent;
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 1rem;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::selection {
+  display: none;
+}
