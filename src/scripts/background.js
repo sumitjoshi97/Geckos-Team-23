@@ -9,6 +9,24 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     fetch(URL)
       .then(response => response.json())
       .then(data => {
+        let definitionData = [];
+
+        for (let i = 0; i < 3; i++) {
+          if (data[i]) {
+            const response = { type: data[i].fl, def: data[i].shortdef[0] };
+            definitionData.push(response);
+          }
+        }
+
+        const newWord = {
+          word: request.word,
+          defintion: definitionData,
+        };
+
+        let wordList = JSON.parse(localStorage.getItem("wordList")) || [];
+        wordList = [newWord, ...wordList];
+        localStorage.setItem("wordList", JSON.stringify(wordList));
+
         sendResponse({ response: data[0].shortdef[0] });
       })
       .catch(error => sendResponse({ response: "Oops! can't fetch" }));
