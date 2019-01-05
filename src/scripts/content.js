@@ -79,8 +79,9 @@ class App {
         this.currentTooltip = reference;
       },
       async onShow(tip) {
-        // fetch data and set it to content
-        tip.setContent(`Show definiton of: ${tip.reference.text}`);
+        chrome.runtime.sendMessage({ word: tip.reference.text }, response => {
+          tip.setContent(response.response);
+        });
       },
       onHidden(tip) {
         tip.destroy();
