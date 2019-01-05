@@ -9,7 +9,7 @@
     "default_title": "Words",
     "default_popup": "views/popup.html"
   },
-  "chrome_url_overrides" : {
+  "chrome_url_overrides": {
     "newtab": "views/newTab.html"
   },
   "background": {
@@ -24,8 +24,5 @@
       "js": ["lib/tippy.js", "scripts/content.js"]
     }
   ],
-  "permissions": [
-    "tabs",
-    "activeTab"
-  ]
+  "permissions": ["tabs", "activeTab"]
 }
