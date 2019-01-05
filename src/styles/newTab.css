@@ -125,6 +125,36 @@ body {
   padding-right: 1rem;
 }
 
+/* delete button */
+.delete-btn {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  border: 0.15rem solid #5f5f5f;
+  border-radius: 1rem;
+  background: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+  cursor: pointer;
+}
+
+.delete-btn::after {
+  content: "-";
+  font-weight: 700;
+}
+
+.delete-btn:hover {
+  opacity: 1;
+}
+
+.delete-btn:hover,
+.delete-btn:active,
+.delete-btn:focus {
+  outline: none;
+}
+
 /* /////////////////////////////////////// */
 /* custom scrollbar css */
 ::-webkit-scrollbar {

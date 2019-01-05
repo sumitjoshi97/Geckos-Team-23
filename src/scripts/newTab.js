@@ -51,6 +51,26 @@ function addCard(word, definition) {
   // set words and definition to card content
   newCard.innerHTML = card;
 
+  //create and add button to card
+  const button = createDeleteButton(newCard);
+  newCard.appendChild(button);
+
   // add new card to dashboard
   dashboard.appendChild(newCard);
+}
+
+function createDeleteButton(card) {
+  const deleteButton = document.createElement("button");
+  deleteButton.setAttribute("class", "delete-btn");
+  deleteButton.addEventListener("click", function() {
+    removeCard(card);
+  });
+  return deleteButton;
+}
+
+function removeCard(cardToRemove) {
+  const dashboard = document.getElementById("dashboard-content");
+
+  // Removes card from dashboard
+  dashboard.removeChild(cardToRemove);
 }
