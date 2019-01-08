@@ -41,7 +41,7 @@ function addCard(word, definition) {
   );
   const card = `<p class="word-head">${word}</p>${definitions}`;
 
-  const dashboard = document.getElementById("dashboard-content");
+  const dashboardContent = document.getElementById("dashboard-content");
 
   //create new card
   let newCard = document.createElement("div");
@@ -56,7 +56,7 @@ function addCard(word, definition) {
   newCard.appendChild(button);
 
   // add new card to dashboard
-  dashboard.appendChild(newCard);
+  dashboardContent.appendChild(newCard);
 }
 
 function createDeleteButton(card) {
@@ -69,8 +69,8 @@ function createDeleteButton(card) {
 }
 
 function removeCard(cardToRemove) {
-  const dashboard = document.getElementById("dashboard-content");
+  const dashboardContent = document.getElementById("dashboard-content");
 
   // Removes card from dashboard
-  dashboard.removeChild(cardToRemove);
+  dashboardContent.removeChild(cardToRemove);
 }
