@@ -1,33 +1,9 @@
 "use strict";
 
-const wordsList = [
-  {
-    word: "some",
-    definition: [
-      "asdasd",
-      "asdasdasd",
-      "asdasdasdasd sdfsdf sd f df  df s d sdf sf df dfffffsdffdf ",
-    ],
-  },
-  { word: "some2", definition: ["asdasd", "asdasdasd", "asdasdasdasd"] },
-  { word: "som3", definition: ["asdasd", "asdasdasd", "asdasdasdasd"] },
-  { word: "som4", definition: ["asdasd", "asdasdasd", "asdasdasdasd"] },
-  { word: "some5", definition: ["asdasd", "asdasdasd", "asdasdasdasd"] },
-  { word: "some", definition: ["asdasd", "asdasdasd", "asdasdasdasd"] },
-  { word: "some2", definition: ["asdasd", "asdasdasd", "asdasdasdasd"] },
-  { word: "som3", definition: ["asdasd", "asdasdasd", "asdasdasdasd"] },
-  { word: "som4", definition: ["asdasd", "asdasdasd", "asdasdasdasd"] },
-  { word: "some", definition: ["asdasd", "asdasdasd", "asdasdasdasd"] },
-  { word: "some2", definition: ["asdasd", "asdasdasd", "asdasdasdasd"] },
-  { word: "som3", definition: ["asdasd", "asdasdasd", "asdasdasdasd"] },
-  { word: "som4", definition: ["asdasd", "asdasdasd", "asdasdasdasd"] },
-  { word: "some5", definition: ["asdasd", "asdasdasd", "asdasdasdasd"] },
-  { word: "some", definition: ["asdasd", "asdasdasd", "asdasdasdasd"] },
-  { word: "some2", definition: ["asdasd", "asdasdasd", "asdasdasdasd"] },
-];
+const bgp = chrome.extension.getBackgroundPage();
 
+const wordsList = bgp.getWords();
 // maps all words and create cards
-wordsList.map(word => addCard(word.word, word.definition));
 
 function addCard(word, definition) {
   let definitions = "";
