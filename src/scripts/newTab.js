@@ -5,14 +5,17 @@ const bgp = chrome.extension.getBackgroundPage();
 const wordsList = bgp.getWords();
 // maps all words and create cards
 
-function addCard(word, definition) {
+wordsList.map(word => addCard(word));
+
+function addCard({ defs, word }) {
   let definitions = "";
-  definition.map(
+  defs.map(
     (def, index) =>
       (definitions += `
       <div class="word-def">
-        <span>${index + 1}.</span>
-        <span>${def}</span>
+        <span class="def-index">${index + 1}.</span>
+        
+        <span class="def-text">${def.type}: ${def.def}</span>
       </div>`),
   );
   const card = `<p class="word-head">${word}</p>${definitions}`;
