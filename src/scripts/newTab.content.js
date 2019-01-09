@@ -1,11 +1,7 @@
 "use strict";
 
-const bgp = chrome.extension.getBackgroundPage();
-
-const wordsList = bgp.getWords();
 // maps all words and create cards
-
-wordsList.map(word => addCard(word));
+let wordList = JSON.parse(localStorage.getItem("wordList")) || [];
 
 function addCard({ defs, word }) {
   let definitions = "";
@@ -24,8 +20,8 @@ function addCard({ defs, word }) {
 
   //create new card
   let newCard = document.createElement("div");
-  newCard.setAttribute("class", "card");
-  newCard.setAttribute("id", word);
+  newCard.className = "card";
+  newCard.id = word;
 
   // set words and definition to card content
   newCard.innerHTML = card;
@@ -40,10 +36,10 @@ function addCard({ defs, word }) {
 
 function createDeleteButton(card) {
   const deleteButton = document.createElement("button");
-  deleteButton.setAttribute("class", "delete-btn");
-  deleteButton.addEventListener("click", function() {
+  deleteButton.className = "delete-btn";
+  deleteButton.onclick = function() {
     removeCard(card);
-  });
+  };
   return deleteButton;
 }
 
@@ -52,4 +48,5 @@ function removeCard(cardToRemove) {
 
   // Removes card from dashboard
   dashboardContent.removeChild(cardToRemove);
+  removeWord(cardToRemove.id);
 }
