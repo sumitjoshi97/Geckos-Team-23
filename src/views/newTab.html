@@ -6,13 +6,12 @@
   </head>
 
   <body>
-    <div class="dashboard">
-
+    <div id="dashboard">
       <!-- header -->
       <div id="dashboard-header">
-        <input type="text" id="dashboard-search" />
-        <div>Your words</div>
-        <button class="settings-btn">...</button>
+        <!-- <input type="text" id="dashboard-search" /> -->
+        <div class="header-text">Your words</div>
+        <button id="settings-btn">...</button>
       </div>
 
       <!-- dashboard words list -->
@@ -22,15 +21,27 @@
       <div id="dashboard-settings">
         <div class="settings-header">
           <h3 class="settings-heading">Menu</h3>
-          <button class="menu-close-btn">X</button>
+          <button id="menu-close-btn">X</button>
         </div>
         <div class="settings">
+          <!-- theme settings -->
+          <div class="settings-theme">
+            <p>choose a theme</p>
 
-
-
+            <!-- themes -->
+            <div class="themes">
+              <div id="red" class="theme-box"></div>
+              <div id="green" class="theme-box"></div>
+              <div id="teal" class="theme-box"></div>
+              <div id="blue" class="theme-box"></div>
+              <div id="violet" class="theme-box"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <script src="../scripts/newTab.js"></script>
+    <script src="../scripts/newTab.content.js"></script>
+    <script src="../scripts/newTab.settings.js"></script>
+    <script src="../lib/masonry.js"></script>
   </body>
 </html>
