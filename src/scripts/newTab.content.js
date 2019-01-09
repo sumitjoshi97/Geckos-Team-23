@@ -2,6 +2,9 @@
 
 // maps all words and create cards
 let wordList = JSON.parse(localStorage.getItem("wordList")) || [];
+if (wordList.length > 0) {
+  wordList.map(word => addCard(word));
+}
 
 function addCard({ defs, word }) {
   let definitions = "";
@@ -49,4 +52,15 @@ function removeCard(cardToRemove) {
   // Removes card from dashboard
   dashboardContent.removeChild(cardToRemove);
   removeWord(cardToRemove.id);
+}
+
+function removeWord(word) {
+  wordList = wordList.filter(w => w.word !== word);
+  console.log(wordList);
+
+  localStorage.setItem("wordList", wordList);
+
+  if (wordList.length === 0) {
+    localStorage.removeItem("wordList");
+  }
 }
