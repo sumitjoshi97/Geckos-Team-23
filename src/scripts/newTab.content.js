@@ -1,9 +1,13 @@
 "use strict";
 
-// maps all words and create cards
 let wordList = JSON.parse(localStorage.getItem("wordList")) || [];
 if (wordList.length > 0) {
-  wordList.map(word => addCard(word));
+  renderCards();
+}
+
+// maps all words and create cards
+function renderCards() {
+  return wordList.map(word => addCard(word));
 }
 
 function addCard({ defs, word }) {
