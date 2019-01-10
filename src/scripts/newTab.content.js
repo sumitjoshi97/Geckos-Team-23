@@ -13,8 +13,10 @@ function addCard({ defs, word }) {
       (definitions += `
       <div class="word-def">
         <span class="def-index">${index + 1}.</span>
-        
-        <span class="def-text">${def.type}: ${def.def}</span>
+        <div class="def">
+          <span class="def-type">${def.type}</span>
+          <span class="def-text"> ${def.def}</span>
+        </div>
       </div>`),
   );
   const card = `<p class="word-head">${word}</p>${definitions}`;
