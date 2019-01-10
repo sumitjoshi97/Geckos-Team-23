@@ -56,11 +56,11 @@ function removeCard(cardToRemove) {
 
 function removeWord(word) {
   wordList = wordList.filter(w => w.word !== word);
-  console.log(wordList);
-
-  localStorage.setItem("wordList", wordList);
 
   if (wordList.length === 0) {
     localStorage.removeItem("wordList");
+  } else {
+    localStorage.setItem("wordList", JSON.stringify(wordList));
+    window.location.reload();
   }
 }
