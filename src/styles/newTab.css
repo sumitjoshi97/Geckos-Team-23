@@ -79,25 +79,28 @@ body {
   outline: none;
 }
 
-#dashboard-content {
-  height: calc(100vh - 7rem);
-  top: 6rem;
-  width: 100%;
+.dashboard-sub {
   position: fixed;
-  overflow-y: auto;
+  top: 6rem;
+  width: 148rem;
+  margin: 0 auto;
+}
+
+#dashboard-content {
+  height: calc(100vh - 7rem) !important;
+  top: 0rem !important;
+  width: 100%;
+  position: relative !important;
+  overflow-y: auto !important;
   padding: 0 1rem;
-  /* display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap; */
 }
 
 /* word-defintion card  */
 .card {
   position: relative;
+  display: inline-block;
   background: var(--primary-light);
   width: 25rem;
-  min-height: 25rem;
   margin: 2rem;
   padding: 1.4rem;
   border-radius: 0.2rem;
@@ -132,9 +135,18 @@ body {
   padding-right: 1rem;
 }
 
+.def {
+  padding-bottom: 1rem;
+}
+
+.def-type {
+  font-weight: 700;
+}
+
 .def-text {
   padding-bottom: 0.5rem;
 }
+
 /* delete button */
 .delete-btn {
   position: absolute;
