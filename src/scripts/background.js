@@ -12,7 +12,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         let wordList = JSON.parse(localStorage.getItem("wordList")) || [];
 
         // check if word is in local-storage
-        if (isWordStored(request.word, wordList)) {
+        if (!isWordStored(request.word, wordList)) {
           let definitionData = [];
 
           for (let i = 0; i < 3; i++) {
@@ -40,10 +40,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 // function to check word is in local-storage or not
 isWordStored = (word, wordList) => {
-  for (let w in wordList) {
-    if (w.word === word.toLowerCase()) {
-      return false;
+  for (let wordObj of wordList) {
+    if (wordObj.word === word.toLowerCase()) {
+      return true;
     }
   }
-  return true;
+  return false;
 };
