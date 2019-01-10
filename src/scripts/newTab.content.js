@@ -64,3 +64,7 @@ function removeWord(word) {
     window.location.reload();
   }
 }
+
+const msnry = new Masonry("#dashboard-content", {
+  itemSelector: ".card",
+});
