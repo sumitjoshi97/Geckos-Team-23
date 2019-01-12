@@ -107,8 +107,6 @@ body {
   box-shadow: var(--shadow-dark);
   cursor: pointer;
   transition: all 0.4s;
-  overflow: auto;
-  overflow-y: scroll;
 }
 
 .card:hover {
@@ -141,10 +139,6 @@ body {
 
 .def-type {
   font-weight: 700;
-}
-
-.def-text {
-  padding-bottom: 0.5rem;
 }
 
 /* delete button */
