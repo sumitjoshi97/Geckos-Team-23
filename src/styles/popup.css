@@ -1,0 +1,51 @@
+:root {
+  --primary-dark: #24353a;
+  --primary-light: #fdf3ff;
+  --shadow-dark: -0.5rem 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+  font-size: 1.6rem;
+  color: #24353a;
+  padding: 1rem;
+}
+
+#dashboard-btn {
+  background: #f1f1f1;
+  font-size: 1.4rem;
+  border: 1px #979797 solid;
+  border-radius: 0.2rem;
+  box-shadow: var(--shadow-dark);
+  width: 13rem;
+  padding: 1rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#dashboard-btn:hover {
+  transform: translateY(-0.1rem);
+  box-shadow: -0.2 0.5rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+#dashboard-btn:active,
+#dsahboard-btn:focus {
+  outline: none;
+}
+
+::selection {
+  background: none;
+}
