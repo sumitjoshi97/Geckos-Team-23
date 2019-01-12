@@ -285,3 +285,30 @@ body {
 ::selection {
   display: none;
 }
+
+/* /////////////////////////////////////// */
+/* responsive media queries */
+
+@media only screen and (max-width: 1450px) {
+  .dashboard-sub {
+    width: 120rem;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .dashboard-sub {
+    width: 89rem;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .dashboard-sub {
+    width: 60rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .dashboard-sub {
+    width: 30rem;
+  }
+}
