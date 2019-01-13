@@ -31,7 +31,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           localStorage.setItem("wordList", JSON.stringify(wordList));
         }
 
-        sendResponse({ response: `${data[0].fl}: ${data[0].shortdef[0]}` });
+        sendResponse({ response: data[0].shortdef[0] });
       })
       .catch(error => sendResponse({ response: "Oops! can't fetch" }));
   }
