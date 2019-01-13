@@ -18,9 +18,10 @@ html {
 }
 
 body {
-  font-size: 1.6rem;
-  color: #24353a;
-  padding: 1rem;
+
+.header {
+  padding: 0 10rem 0 0;
+}
 }
 
 #dashboard-btn {
