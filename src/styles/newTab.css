@@ -93,6 +93,7 @@ body {
   position: relative !important;
   overflow-y: auto !important;
   padding: 0 1rem;
+  scrollbar-width: thin;
 }
 
 /* word-defintion card  */
