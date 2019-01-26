@@ -1,8 +1,7 @@
 {
-  "name": "tooltip-dictionary",
+  "name": "Words - tooltip dictionary",
   "version": "1.0.0",
   "description": "Voyage-7 | https://chingu.io/",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
