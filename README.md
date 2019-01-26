@@ -1,9 +1,20 @@
-# Geckos-Team-23
+# Words - tooltip dictionary
 
-Voyage-7 | https://chingu.io/
+A firefox/chrome extension to view defintions as you browse the web.
 
-## Tooltip-dictionary
+Project is based on the need that users, many a times, search for the meaning of a word and it's possible for them to forget it when they come across the same word again.
 
-The project is based on the need that users, many a times, search for the meaning of a word and it's possible for them to forget it when they come across the same word again.  
-This is aimed to be a simple browser extension, which once added, users can double-click on the word they want to search for, and get the meaning of the word as a tooltip.  
-Additional functionality is aimed at creating a save button, which when clicked will be added to a list, that can be displayed on a new tab in the browser itself.
+## Getting Started
+
+The words browser extension relies on merriam webster dictionary api to query word's defintions. You will need to register an API key to start local development.
+To get started local development, create a file in the root of the repo named .env with the following content:
+
+> DICT_API_KEY='api-key-here'
+
+### Installation
+
+1.  fork and clone the repo
+2.  run yarn in root directory
+3.  enter DICT_API in env file
+4.  run gulp
+5.  load extension from dict folder in chrome or firefox
