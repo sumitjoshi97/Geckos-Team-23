@@ -1,9 +1,10 @@
 // task runner
 const gulp = require("gulp");
-// used to get environment variables
-const dotenv = require("dotenv");
-// used to replace string
+const { task, dest, watch, parallel, series } = gulp;
 const replace = require("gulp-replace");
+
+//env dependencies
+const dotenv = require("dotenv");
 
 dotenv.config();
 
@@ -30,14 +31,40 @@ const config = {
     },
 };  
 
-gulp.task("replace", () => {
+//
+// DEVELOPMENT
+//
+
+task("replace", () => {
   return (
     gulp
-      .src(config.paths.contentScript.src)
+      .src(config.paths.backgroundScript)
       // replace the occurence of this string with api key
       .pipe(replace("<<!--dict-api-key-->>", config.dictionaryAPIKey))
-      .pipe(gulp.dest(config.paths.contentScript.dest))
+      .pipe(dest(config.paths.tmpJS))
   );
+});
+
+task("copy", () => {
+  return (
+    gulp
+      // we exclude the content script from the copied files
+      .src([...config.paths.src, `!${config.paths.backgroundScript}`])
+      .pipe(dest(config.paths.tmp))
+  );
+});
+
+task("dev", parallel("replace", "copy"));
+
+task(
+  "watch",
+  series("dev", () => {
+    watch(config.paths.src[0], series("dev"));
+  }),
+  );
+
+task("default", series("watch"));
+
 });
 
 gulp.task("copy", () => {
