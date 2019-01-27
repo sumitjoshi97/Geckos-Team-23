@@ -19,6 +19,9 @@
   "devDependencies": {
     "dotenv": "^6.1.0",
     "gulp": "^4.0.0",
-    "gulp-replace": "^1.0.0"
+    "gulp-clean-css": "^4.0.0",
+    "gulp-htmlclean": "^2.7.22",
+    "gulp-replace": "^1.0.0",
+    "gulp-uglify-es": "^1.0.4"
   }
 }
