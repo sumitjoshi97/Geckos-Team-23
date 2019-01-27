@@ -1,16 +1,19 @@
 {
-  "name": "Words - tooltip dictionary",
+  "name": "words-tooltip-dictionary",
   "version": "1.0.0",
   "description": "Voyage-7 | https://chingu.io/",
+  "engines": {
+    "node": "11.4.0",
+    "yarn": "1.12.3"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "gulp",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chingu-voyage7/Geckos-Team-23.git"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/chingu-voyage7/Geckos-Team-23/issues"
