@@ -14,15 +14,20 @@ const config = {
   dictionaryAPIKey: process.env.DICT_API,
   // path config
   paths: {
-    destBase: "dist/",
-    contentScript: {
-      src: "src/scripts/background.js",
-      dest: "dist/scripts/",
-    },
-    others: {
       src: ["src/**/*"],
+    srcHTML: "src/views/*.html",
+    srcCSS: "src/styles/*.css",
+    srcJS: "src/scripts/*.js",
+    backgroundScript: "src/scripts/background.js",
+
+    tmp: "tmp/",
+    tmpJS: "tmp/scripts/",
+
+    dist: "dist/",
+    distHTML: "dist/views/",
+    distCSS: "dist/styles/",
+    distJS: "dist/scripts/",
     },
-  },
 };  
 
 gulp.task("replace", () => {
