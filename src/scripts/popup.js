@@ -1,4 +1,9 @@
 const dashboardBtn = document.getElementById("dashboard-btn");
+
 dashboardBtn.onclick = function() {
-  chrome.tabs.create({ url: "chrome://newtab" });
+  if (chrome) {
+    chrome.tabs.create({ url: "chrome://newtab" });
+  } else {
+    browser.tabs.create({ url: "about:newtab" });
+  }
 };
