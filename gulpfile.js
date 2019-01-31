@@ -1,10 +1,7 @@
 // gulp dependencies
 const gulp = require("gulp");
 const { task, dest, watch, parallel, series } = gulp;
-const replace = require("gulp-replace");
-const uglify = require("gulp-uglify-es").default;
-const htmlclean = require("gulp-htmlclean");
-const cleanCSS = require("gulp-clean-css");
+const $ = require("gulp-load-plugins")();
 
 //env dependencies
 const dotenv = require("dotenv");
@@ -43,7 +40,7 @@ task("replace", () => {
     gulp
       .src(config.paths.backgroundScript)
       // replace the occurence of this string with api key
-      .pipe(replace("<<!--dict-api-key-->>", config.dictionaryAPIKey))
+      .pipe($.replace("<<!--dict-api-key-->>", config.dictionaryAPIKey))
       .pipe(dest(config.paths.tmpJS))
   );
 });
@@ -74,29 +71,29 @@ task("default", series("watch"));
 task("html:dist", () => {
   return gulp
     .src(config.paths.srcHTML)
-    .pipe(htmlclean())
+    .pipe($.htmlclean())
     .pipe(dest(config.paths.distHTML));
 });
 
 task("css:dist", () => {
   return gulp
     .src(config.paths.srcCSS)
-    .pipe(cleanCSS())
+    .pipe($.cleanCss())
     .pipe(dest(config.paths.distCSS));
 });
 
 task("rename:dist", () => {
   return gulp
     .src(config.paths.backgroundScript)
-    .pipe(replace("<<!--dict-api-key-->>", config.dictionaryAPIKey))
-    .pipe(uglify())
+    .pipe($.replace("<<!--dict-api-key-->>", config.dictionaryAPIKey))
+    .pipe($.uglifyEs.default())
     .pipe(dest(config.paths.distJS));
 });
 
 task("js:dist", () => {
   return gulp
     .src([config.paths.srcJS, `!${config.paths.backgroundScript}`])
-    .pipe(uglify())
+    .pipe($.uglifyEs.default())
     .pipe(dest(config.paths.distJS));
 });
 
