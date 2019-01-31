@@ -46,7 +46,7 @@ class App {
   }
 
   showLookupTooltip() {
-    const content = this.createLookupButton(this.currentTooltip.text);
+    const content = this.createLookupButton();
 
     tippy(this.currentTooltip, {
       content,
@@ -101,7 +101,7 @@ class App {
 
     const selectionRange = selection.getRangeAt(0);
 
-    //get current selelction 
+    //get current selelction
     const selectionRect = selectionRange.getBoundingClientRect();
 
     const virtualReference = {
@@ -121,7 +121,7 @@ class App {
    * @param {string} selectionText - the selection text
    * @returns lookup button Node
    */
-  createLookupButton(selectionText) {
+  createLookupButton() {
     const lookupButton = document.createElement("button");
     lookupButton.className = "tippy-lookup-button";
     lookupButton.textContent = "lookup?";
