@@ -1,10 +1,6 @@
 // gulp dependencies
-const gulp = require("gulp");
-const { task, dest, watch, parallel, series } = gulp;
-const replace = require("gulp-replace");
-const uglify = require("gulp-uglify-es").default;
-const htmlclean = require("gulp-htmlclean");
-const cleanCSS = require("gulp-clean-css");
+const { src, task, dest, watch, parallel, series } = require("gulp");
+const $ = require("gulp-load-plugins")();
 
 //env dependencies
 const dotenv = require("dotenv");
@@ -38,80 +34,68 @@ const config = {
 // DEVELOPMENT
 //
 
-task("replace", () => {
+function replace() {
   return (
-    gulp
-      .src(config.paths.backgroundScript)
+    src(config.paths.backgroundScript)
       // replace the occurence of this string with api key
-      .pipe(replace("<<!--dict-api-key-->>", config.dictionaryAPIKey))
+      .pipe($.replace("<<!--dict-api-key-->>", config.dictionaryAPIKey))
       .pipe(dest(config.paths.tmpJS))
   );
-});
+}
 
-task("copy", () => {
-  return (
-    gulp
-      // we exclude the content script from the copied files
-      .src([...config.paths.src, `!${config.paths.backgroundScript}`])
-      .pipe(dest(config.paths.tmp))
+function copy() {
+  return src([...config.paths.src, `!${config.paths.backgroundScript}`]).pipe(
+    dest(config.paths.tmp),
   );
+}
+
+const dev = parallel(replace, copy);
+
+exports.default = series(dev, function watching() {
+  watch(config.paths.src[0], dev);
 });
-
-task("dev", parallel("replace", "copy"));
-
-task(
-  "watch",
-  series("dev", () => {
-    watch(config.paths.src[0], series("dev"));
-  }),
-);
-
-task("default", series("watch"));
 
 //
 // PRODUCTION
 //
 task("html:dist", () => {
-  return gulp
-    .src(config.paths.srcHTML)
-    .pipe(htmlclean())
+  return src(config.paths.srcHTML)
+    .pipe($.htmlclean())
     .pipe(dest(config.paths.distHTML));
 });
 
 task("css:dist", () => {
-  return gulp
-    .src(config.paths.srcCSS)
-    .pipe(cleanCSS())
+  return src(config.paths.srcCSS)
+    .pipe($.cleanCss())
     .pipe(dest(config.paths.distCSS));
 });
 
 task("rename:dist", () => {
-  return gulp
-    .src(config.paths.backgroundScript)
-    .pipe(replace("<<!--dict-api-key-->>", config.dictionaryAPIKey))
-    .pipe(uglify())
+  return src(config.paths.backgroundScript)
+    .pipe($.replace("<<!--dict-api-key-->>", config.dictionaryAPIKey))
+    .pipe($.uglifyEs.default())
     .pipe(dest(config.paths.distJS));
 });
 
 task("js:dist", () => {
-  return gulp
-    .src([config.paths.srcJS, `!${config.paths.backgroundScript}`])
-    .pipe(uglify())
+  return src([config.paths.srcJS, `!${config.paths.backgroundScript}`])
+    .pipe($.uglifyEs.default())
     .pipe(dest(config.paths.distJS));
 });
 
 task("copy:dist", () => {
-  return gulp
-    .src([
-      ...config.paths.src,
-      `!${config.paths.srcHTML}`,
-      `!${config.paths.srcJS}`,
-      `!${config.paths.srcCSS}`,
-    ])
-    .pipe(dest(config.paths.dist));
+  return src([
+    ...config.paths.src,
+    `!${config.paths.srcHTML}`,
+    `!${config.paths.srcJS}`,
+    `!${config.paths.srcCSS}`,
+  ]).pipe(dest(config.paths.dist));
 });
 
-task(
-  "build",
-  parallel("html:dist", "css:dist", "rename:dist", "js:dist", "copy:dist"),
+exports.build = parallel(
+  "html:dist",
+  "css:dist",
+  "rename:dist",
+  "js:dist",
+  "copy:dist",
 );
